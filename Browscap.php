@@ -103,6 +103,7 @@ class Browscap
      */
     public $remoteIniUrl = 'http://browscap.org/stream?q=PHP_BrowsCapINI';
     public $remoteVerUrl = 'http://browscap.org/version';
+    public $remoteVerNumberUrl = 'http://browscap.org/version-number';
     public $timeout = 60;
     public $updateInterval = 432000; // 5 days
     public $errorInterval = 7200; // 2 hours
@@ -211,6 +212,8 @@ class Browscap
     protected $_patterns = array();
     protected $_properties = array();
     protected $_source_version;
+
+    protected $_remote_version_number = null;
 
     /**
      * An associative array of associative arrays in the format
@@ -717,11 +720,15 @@ class Browscap
 
         // Save and return
         $result = (bool) file_put_contents($tmp_cache_path, $cache, LOCK_EX);
+        $result = $result && ! empty( $this->_source_version );
         if ( $result ) {
             $result = (bool) file_put_contents($cache_path, $cache, LOCK_EX);
         }
         if ( file_exists($tmp_cache_path) ) {
             @unlink($tmp_cache_path);
+        }
+        if ( file_exists($ini_path) ) {
+            @unlink($ini_path);
         }
         return $result;
     }
@@ -1231,5 +1238,14 @@ class Browscap
         $ua = str_replace('%m', $this->_getUpdateMethod(), $ua);
 
         return $ua;
+    }
+
+    public function getRemoteVersionNumber()
+    {
+        if (empty($this->_remote_version_number)) {
+            $this->_remote_version_number = $this->_getRemoteData( $this->remoteVerNumberUrl );
+        }
+
+        return $this->_remote_version_number;
     }
 }
