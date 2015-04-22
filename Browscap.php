@@ -725,10 +725,10 @@ class Browscap
             $result = (bool) file_put_contents($cache_path, $cache, LOCK_EX);
         }
         if ( file_exists($tmp_cache_path) ) {
-            //@unlink($tmp_cache_path);
+            @unlink($tmp_cache_path);
         }
         if ( file_exists($ini_path) ) {
-            //@unlink($ini_path);
+            @unlink($ini_path);
         }
         return $result;
     }
