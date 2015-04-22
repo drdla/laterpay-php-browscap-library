@@ -1136,7 +1136,6 @@ class Browscap
                                           'timeout'   => $this->timeout,
                                             )
                                 );
-                var_dump($raw_response);
                 $file = wp_remote_retrieve_body( $raw_response  );
 
                 return $file;
