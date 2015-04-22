@@ -101,7 +101,7 @@ class Browscap
      * is MINIMAL, so there is no reason to use the standard file whatsoever. Either go for light,
      * which is blazing fast, or get the full one. (note: light version doesn't work, a fix is on its way)
      */
-    public $remoteIniUrl = 'http://browscap.org/stream?q=PHP_BrowsCapINI';
+    public $remoteIniUrl = 'http://browscap.org/stream?q=Full_PHP_BrowsCapINI';
     public $remoteVerUrl = 'http://browscap.org/version';
     public $remoteVerNumberUrl = 'http://browscap.org/version-number';
     public $timeout = 540;
