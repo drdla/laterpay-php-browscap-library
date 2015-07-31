@@ -237,6 +237,17 @@ class Browscap
      */
     protected $_streamContext = null;
 
+    protected $_customAgents = array(
+        'Mozilla/5.0 (compatible; Rivva; *http://www.rivva.de)*' => array(
+            'Parent'    => 'General Crawlers',
+            'Browser'   => 'bot',
+        ),
+    );
+
+    public function addCustomAgent( $name, $data ) {
+        $this->_customAgents[ $name ] = $data;
+    }
+
     /**
      * Constructor class, checks for the existence of (and loads) the cache and
      * if needed updated the definitions
@@ -565,6 +576,9 @@ class Browscap
             $browsers = parse_ini_file($ini_path, true, INI_SCANNER_RAW);
         } else {
             $browsers = parse_ini_file($ini_path, true);
+        }
+        foreach( $this->_customAgents as $name => $data ) {
+            $browsers[$name] = $data;
         }
 
         $this->_source_version = $browsers[self::BROWSCAP_VERSION_KEY]['Version'];
