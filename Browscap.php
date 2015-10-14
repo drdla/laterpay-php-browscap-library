@@ -242,6 +242,14 @@ class Browscap
             'Parent'    => 'General Crawlers',
             'Browser'   => 'bot',
         ),
+        'TwitterFeed 3' => array(
+            'Parent'    => 'General Crawlers',
+            'Browser'   => 'bot',
+        ),
+        'Twitterfeed' => array(
+            'Parent'    => 'General Crawlers',
+            'Browser'   => 'bot',
+        ),
     );
 
     public function addCustomAgent( $name, $data ) {
