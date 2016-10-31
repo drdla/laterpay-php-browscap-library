@@ -250,6 +250,10 @@ class Browscap
             'Parent'    => 'General Crawlers',
             'Browser'   => 'bot',
         ),
+        'Mozilla/5.0 *(compatible; validator.ampproject.org)*' => array(
+            'Parent'    => 'General Crawlers',
+            'Browser'   => 'bot',
+        ),
     );
 
     public function addCustomAgent( $name, $data ) {
